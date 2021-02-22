@@ -20,8 +20,8 @@ socket.io signaling for multi-party (trickle ICE)<br/>
 <button type="button" onclick="startVideo();">Start Video</button>
 <button type="button" onclick="stopVideo();">Stop Video</button>
 &nbsp;
-<button type="button" onclick="connect();">Connect</button>
-<button type="button" onclick="hangUp();">Hang Up</button>
+<!--<button type="button" onclick="connect();">Connect</button>-->
+<!--<button type="button" onclick="hangUp();">Hang Up</button>-->
 <div>
     <video id="local_video" autoplay style="width: 160px; height: 120px; border: 1px solid black;"></video>
 </div>
@@ -53,8 +53,8 @@ socket.io signaling for multi-party (trickle ICE)<br/>
 	const MAX_CONNECTION_COUNT = 3;
 
 	// --- multi video ---
-	let container = document.getElementById('container');
-	_assert('container', container);
+	// let container = document.getElementById('container');
+	// _assert('container', container);
 
 	// --- prefix -----
 	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia ||
@@ -250,7 +250,7 @@ socket.io signaling for multi-party (trickle ICE)<br/>
 		video.style.border = 'solid black 1px';
 		video.style.margin = '2px';
 
-		container.appendChild(video);
+		// container.appendChild(video);
 
 		return video;
 	}
@@ -259,7 +259,7 @@ socket.io signaling for multi-party (trickle ICE)<br/>
 		let video = document.getElementById(elementId);
 		_assert('removeVideoElement() video must exist', video);
 
-		container.removeChild(video);
+		// container.removeChild(video);
 		return video;
 	}
 
