@@ -1,8 +1,8 @@
 module.exports = {
 	monitoring: (req, res) => {
-		res.render("./camera/camera_demo.ejs");
+		res.render("./camera/monitor.ejs");
 	},
 	recording: (req, res) => {
-		res.render("./camera/camera_demo.ejs");
+		res.render("./camera/camera.ejs");
 	}
 }
