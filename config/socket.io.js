@@ -53,6 +53,42 @@ module.exports = (httpServer) => {
 				io.emit(type, message);
 			}
 		}
+
+		// When a user send a SDP message
+		// broadcast to all users in the room
+		socket.on('message', function (message) {
+			var date = new Date();
+			message.from = socket.id;
+			console.log(date + 'id=' + socket.id + ' Received Message: ' + JSON.stringify(message));
+
+			// get send target
+			var target = message.sendto;
+			if (target) {
+				console.log('===== message emit to -->' + target);
+				socket.to(target).emit('message', message);
+				return;
+			}
+
+			// broadcast in room
+			emitMessage('message', message);
+		});
+
+		// When the user hangs up
+		// broadcast bye signal to all users in the room
+		socket.on('disconnect', function () {
+			// close user connection
+			console.log((new Date()) + ' Peer disconnected. id=' + socket.id);
+
+			// --- emit ----
+			emitMessage('user disconnected', {id: socket.id});
+
+			// --- leave room --
+			var roomName = getRoomName();
+			if (roomName) {
+				socket.leave(roomName);
+			}
+		});
+
 	})
 	return io;
 }

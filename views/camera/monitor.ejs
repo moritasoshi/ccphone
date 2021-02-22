@@ -27,24 +27,23 @@ socket.io signaling for multi-party (trickle ICE)<br/>
 </div>
 <div id="container">
 </div>
-<!--
+
 <p>SDP to send:<br />
-  <textarea id="text_for_send_sdp" rows="5" cols="60" readonly="readonly">SDP to send</textarea>
+    <textarea id="text_for_send_sdp" rows="5" cols="60" readonly="readonly">SDP to send</textarea>
 </p>
 <p>SDP received:&nbsp;
-  <button type="button" onclick="onSdpText();">Receive remote SDP</button>
-  <br />
-  <textarea id="text_for_receive_sdp" rows="5" cols="60"></textarea>
+    <button type="button" onclick="onSdpText();">Receive remote SDP</button>
+    <br />
+    <textarea id="text_for_receive_sdp" rows="5" cols="60"></textarea>
 </p>
--->
 </body>
 <script type="text/javascript">
 	let localVideo = document.getElementById('local_video');
-	// let remoteVideo = document.getElementById('remote_video');
+	let remoteVideo = document.getElementById('remote_video');
 	let localStream = null;
-	// let peerConnection = null;
-	// let textForSendSdp = document.getElementById('text_for_send_sdp');
-	// let textToReceiveSdp = document.getElementById('text_for_receive_sdp');
+	let peerConnection = null;
+	let textForSendSdp = document.getElementById('text_for_send_sdp');
+	let textToReceiveSdp = document.getElementById('text_for_receive_sdp');
 
 	// ---- for multi party -----
 	let peerConnections = [];
@@ -65,9 +64,9 @@ socket.io signaling for multi-party (trickle ICE)<br/>
 	// ----- use socket.io ---
 	let port = 3000;
 	let socket = io.connect('http://localhost:' + port + '/');
-	// let room = getRoomName();
+	let room = getRoomName();
 	socket.on('connect', function (evt) {
-		// console.log('socket.io connected. enter room=' + room);
+		console.log('socket.io connected. enter room=' + room);
 		// socket.emit('enter', room);
 	});
 	socket.on('message', function (message) {
@@ -130,17 +129,17 @@ socket.io signaling for multi-party (trickle ICE)<br/>
 	}
 
 	// -- room名を取得 --
-	// function getRoomName() { // たとえば、 URLに  ?roomname  とする
-	// 	let url = document.location.href;
-	// 	let args = url.split('?');
-	// 	if (args.length > 1) {
-	// 		let room = args[1];
-	// 		if (room != '') {
-	// 			return room;
-	// 		}
-	// 	}
-	// 	return '_testroom';
-	// }
+	function getRoomName() { // たとえば、 URLに  ?roomname  とする
+		let url = document.location.href;
+		let args = url.split('?');
+		if (args.length > 1) {
+			let room = args[1];
+			if (room != '') {
+				return room;
+			}
+		}
+		return '_testroom';
+	}
 
 	// ---- for multi party -----
 	function isReadyToConnect() {
