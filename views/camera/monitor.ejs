@@ -71,7 +71,7 @@ socket.io signaling for multi-party (trickle ICE)<br/>
 		// socket.emit('enter', room);
 	});
 	socket.on('message', function (message) {
-		console.log('message:', message);
+		console.log('message: ' + message.type + ' from: ' + message.from)
 		let fromId = message.from;
 
 		if (message.type === 'offer') {
