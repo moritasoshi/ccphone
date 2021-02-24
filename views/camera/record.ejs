@@ -266,14 +266,18 @@ socket.io signaling for multi-party (trickle ICE)<br/>
 	// ---------------------- media handling -----------------------
 	// start local video
 	function startVideo() {
+		console.log('---startVideo()---')
 		getDeviceStream({video: true, audio: false}) // audio: false <-- ontrack once, audio:true --> ontrack twice!!
 			.then(function (stream) { // success
 				localStream = stream;
 				playVideo(localVideo, stream);
-			}).catch(function (error) { // error
-			console.error('getUserMedia error:', error);
-			return;
-		});
+				console.log('---connect()---')
+				connect();
+			})
+			.catch(function (error) { // error
+				console.error('getUserMedia error:', error);
+				return;
+			})
 	}
 
 	// stop local video
