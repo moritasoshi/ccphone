@@ -3,6 +3,6 @@ module.exports = {
 		res.render("./camera/monitor.ejs");
 	},
 	recording: (req, res) => {
-		res.render("./camera/camera.ejs");
+		res.render("./camera/record.ejs");
 	}
 }
