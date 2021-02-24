@@ -47,10 +47,10 @@ module.exports = (httpServer) => {
 
 			if (roomName) {
 				console.log('===== message broadcast to room -->' + roomName);
-				io.to(roomName).emit(type, message);
+				socket.broadcast.to(roomName).emit(type, message);
 			} else {
 				console.log('===== message broadcast all');
-				io.emit(type, message);
+				socket.broadcast.emit(type, message);
 			}
 		}
 
