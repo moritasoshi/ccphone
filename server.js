@@ -23,6 +23,10 @@ app.set('view engine', 'ejs');
 // responseにx-powered-byヘッダーを出力しないようにする
 app.set('x-powered-by', false);
 
+// cors
+const cors = require('cors')
+app.use(cors())
+
 // DB
 require('./config/db')();
 

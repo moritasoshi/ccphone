@@ -2,7 +2,12 @@ const socketIo = require('socket.io');
 let io;
 
 module.exports = (httpServer) => {
-	io = socketIo(httpServer);
+	io = socketIo(httpServer, {
+		cors: {
+			origin: "https://example.com",
+			methods: ["GET", "POST"]
+		}
+	});
 	io.on('connection', async (socket) => { // websocket接続
 		const loginUser = await getLoginUser();
 
