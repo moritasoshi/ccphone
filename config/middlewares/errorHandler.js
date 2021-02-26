@@ -5,6 +5,7 @@ module.exports = {
 	 * catch 404 and forward to error handler
  	 */
 	createError: function (err, req, res, next) {
+		console.error(err)
 		next(createError(404));
 	},
 	/**

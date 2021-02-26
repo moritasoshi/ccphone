@@ -11,7 +11,9 @@
 <div style="position: relative;">
     <video id="remote-video" autoplay style="width: 320px; height: 240px; border: 1px solid black;"></video>
 </div>
-
+<form>
+    <input type="hidden" id="domainName" value="<%= DOMAIN_NAME %>">
+</form>
 <!---- socket ※自分のシグナリングサーバーに合わせて変更してください ------>
 <script src="/socket.io/socket.io.js"></script>
 
@@ -140,7 +142,8 @@
 	// create socket
 	var socketReady = false;
 	var port = 3000;
-	var socket = io.connect('http://localhost:' + port + '/'); // ※自分のシグナリングサーバーに合わせて変更してください
+	const DOMAIN = document.getElementById('domainName').value || 'localhost';
+	var socket = io.connect(`http://${DOMAIN}/`); // ※シグナリングサーバーに合わせて変更
 
 	// socket: channel connected
 	socket.on('connect', onOpened)
