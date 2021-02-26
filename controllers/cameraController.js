@@ -1,4 +1,4 @@
-const DOMAIN_NAME = process.env.DOMEIN_NAME || 'localhost'
+const DOMAIN_NAME = process.env.DOMAIN_NAME || 'localhost'
 
 module.exports = {
 	monitoring: (req, res) => {
