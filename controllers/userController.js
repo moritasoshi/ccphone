@@ -21,7 +21,7 @@ module.exports = {
 		res.render("./login.ejs", message);
 	},
 	login: passport.authenticate('local', {
-		failureRedirect: "/login",
+		failureRedirect: "/account/login",
 		failureFlash: true,
 		successRedirect: "/",
 		session: true
