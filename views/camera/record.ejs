@@ -13,7 +13,6 @@
 <div style="position: relative;">
     <video id="local-video" autoplay style="width: 240px; height: 180px; border: 1px solid black;"></video>
 </div>
-
 <!---- socket ※自分のシグナリングサーバーに合わせて変更してください------>
 <script src="/socket.io/socket.io.js"></script>
 
@@ -123,8 +122,9 @@
 	// ---- socket ------
 	// create socket
 	var socketReady = false;
-	var port = 3000;
-	var socket = io.connect('http://localhost:' + port + '/'); // ※自分のシグナリングサーバーに合わせて変更してください
+	const url = `${location.protocol}//${location.host}/`;
+	console.log(`socket connect to ${url}`)
+	var socket = io.connect(url);
 
 	// socket: channel connected
 	socket.on('connect', onOpened)

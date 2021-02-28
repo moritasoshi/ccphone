@@ -15,7 +15,7 @@ const socketIoSession = require('./config/socket.io/socket.io-passport-session')
 
 const logger = require('morgan');
 
-const PORT = 3000;
+const PORT = process.env.NODE_PORT || 3000;
 
 // テンプレートエンジン
 app.set('view engine', 'ejs');
