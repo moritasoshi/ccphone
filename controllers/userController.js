@@ -69,7 +69,7 @@ module.exports = {
 		const message = {
 			message: flash
 		}
-		res.render("./login.ejs", message);
+		res.render("./account/login.ejs", message);
 	},
 	login: passport.authenticate('local', {
 		failureRedirect: "/account/login",
